@@ -111,13 +111,13 @@ public class TweetApp {
                 welcome();
                 break;
             case 3:
-                //get logged in user name
+
                 PostTweet pTweet = new PostTweet();
                 pTweet.setUserName(currentloggedInUser);
                 System.out.println("Type in your tweet");
                 String twt=sc.nextLine();
                 pTweet.setTweet(twt);
-//		System.out.println(pTweet.toString());
+
                 try {
                     PostTweetSql pts=new PostTweetSql();
                     pts.postTweet(pTweet);
@@ -128,11 +128,9 @@ public class TweetApp {
                 loggedIn();
                 break;
             case 4:
-                String currentuser = currentloggedInUser;//current user
+                String currentuser = currentloggedInUser;
                 PostTweetSql vt = new PostTweetSql();
                 List<PostTweet> tweetsList= vt.getTweetById(currentuser);
-//        System.out.println("************");
-//        System.out.println(tweetsList);
                 for(PostTweet p:tweetsList)
                 {
                     System.out.println(tweetsList);

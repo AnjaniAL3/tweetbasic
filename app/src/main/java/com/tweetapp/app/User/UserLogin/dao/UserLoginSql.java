@@ -12,14 +12,14 @@ import java.sql.SQLException;
 public class UserLoginSql {
     public UserRegistration getUser(String Username) throws ClassNotFoundException, SQLException, LoginUserNotFoundException {
         String SELECT_USER = "select us_email,us_password from user where us_email =?";
-//		String SELECT_USER = "select * from user";
+
 
 
         UserRegistration user = new UserRegistration();
 
         try {
             Connection connection =  DBHandler.getConnection();
-//				 Statement statement = connection.createStatement())
+
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER);
             preparedStatement.setString(1, Username);
 
@@ -40,7 +40,7 @@ public class UserLoginSql {
         }catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-//			 System.out.println("Caught an error");
+
         }
         return user;
 

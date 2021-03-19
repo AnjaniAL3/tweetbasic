@@ -12,7 +12,6 @@ import java.util.List;
 
 public class PostTweetSql {
 
-    //LoginDaoSqlImpl loginDaoSqlImpl =new LoginDaoSqlImpl();
 
     String INSERT_TWEET_SQL = "INSERT INTO tweet" +
             "  (tweet_us_email, tweet_message) VALUES " +
@@ -26,11 +25,11 @@ public class PostTweetSql {
         try {
             Connection connection =  DBHandler.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TWEET_SQL);
-//			 System.out.println(tweet.getUserName());
+
 
             preparedStatement.setString(1,tweet.getUserName() );
             preparedStatement.setString(2, tweet.getTweet());
-//			 System.out.println(tweet.getTweet());
+
             preparedStatement.executeUpdate();
         }catch (Exception e) {
             // TODO: handle exception
@@ -48,7 +47,7 @@ public class PostTweetSql {
             PreparedStatement preparedStatement = connection.prepareStatement(VIEW_TWEET_SQL);
             ResultSet resultSet = preparedStatement.executeQuery();
             System.out.println(resultSet);
-//			 System.out.println(tweet.getUserName());
+
             while(resultSet.next()) {
                 Long id=resultSet.getLong("tweet_id");
                 String uName=resultSet.getString("tweet_us_email");
@@ -77,7 +76,7 @@ public class PostTweetSql {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             System.out.println(resultSet.toString());
-//			 System.out.println(tweet.getUserName());
+
             while(resultSet.next()) {
 
 

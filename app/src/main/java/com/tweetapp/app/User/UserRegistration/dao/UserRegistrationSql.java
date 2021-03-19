@@ -15,9 +15,8 @@ public class UserRegistrationSql {
                 " (?, ?, ?, ?, ?,?);";
 
 
-        Connection connection = DBHandler.getConnection()
-                ;
-        // Step 2:Create a statement using connection object
+        Connection connection = DBHandler.getConnection();
+
         PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL) ;
 
         preparedStatement.setString(1, user.getFirstName());
@@ -27,11 +26,11 @@ public class UserRegistrationSql {
         preparedStatement.setString(5, user.geteMail());
         preparedStatement.setString(6, user.getPassword());
 
-        System.out.println(preparedStatement);
-        // Step 3: Execute the query or update query
+        //System.out.println(preparedStatement);
+
         preparedStatement.executeUpdate();
 
     }
 
-//    return result;
+
 }
