@@ -1,5 +1,6 @@
 package com.tweetapp.app;
 
+import com.tweetapp.app.AccountSettings.PasswordReset.PasswordResetSql;
 import com.tweetapp.app.User.UserLogin.dao.UserLoginSql;
 import com.tweetapp.app.User.UserLogin.modal.UserLogin;
 import com.tweetapp.app.User.UserRegistration.dao.UserRegistrationSql;
@@ -20,6 +21,7 @@ public class TweetApp {
         System.out.println("----------------Tweet App.----------------------");
         System.out.println("1.Login");
         System.out.println("2.Register");
+        System.out.println("6.Forgot Password");
         System.out.println("Enter your choice");
         ch = Integer.parseInt(sc.nextLine());
         App(ch);
@@ -32,7 +34,9 @@ public class TweetApp {
         System.out.println("3.Post Tweet");
         System.out.println("4.View Tweet");
         System.out.println("5.View All Tweets");
-        System.out.println("6.Logout");
+        System.out.println("6.Reset Password");
+        System.out.println("7.Logout");
+        System.out.println("8.Exit Program");
         System.out.println("Enter your choice");
         ch = Integer.parseInt(sc.nextLine());
         App(ch);
@@ -52,7 +56,6 @@ public class TweetApp {
                 ul.setPassword(password);
                 UserRegistration ur = null;
                 try {
-                    System.out.println("Calling SqlDao");
                     UserLoginSql uls = new UserLoginSql();
                     ur=uls.getUser(username);
                 } catch (Exception e1) {
@@ -69,8 +72,7 @@ public class TweetApp {
                     System.out.println("User not found. Please Register");
                     welcome();
                 }
-                System.out.println("Now Login");
-                loggedIn();
+
                 break;
             case 2:
                 UserRegistration user = new UserRegistration();
@@ -103,8 +105,6 @@ public class TweetApp {
                     UserRegistrationSql urs=new UserRegistrationSql();
                     urs.registerUser(user);
                 }catch(Exception e) {
-//                    c=1;
-//                    System.out.println("value of c:"+c);
                     e.printStackTrace();
 
                 }
@@ -144,6 +144,29 @@ public class TweetApp {
                     System.out.println(alltweetsList);
                 }
                 loggedIn();
+                break;
+            case 6:
+                if(currentloggedInUser.isEmpty()){
+                    System.out.println("Enter your user name");
+                    currentloggedInUser=sc.nextLine();
+                }
+                String newpassword;
+                System.out.println("Enter your new password");
+                newpassword=sc.nextLine();
+
+
+                PasswordResetSql prs=new PasswordResetSql();
+                try {
+                    prs.resetPassword(currentloggedInUser, newpassword);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            case 7:
+                welcome();
+                break;
+            case 8:
+                System.exit(0);
                 break;
             default:
                 System.out.println("Enter valid input");
